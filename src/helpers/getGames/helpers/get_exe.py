@@ -35,14 +35,24 @@ def __debug_get_exe(exes: list[Path], tokens) -> list:
 def get_exes(folder: Path) -> list[Path]:
     folder_name: str = folder.name
     name_components: list[str] = tokenizer(folder_name)
+    token_len: int = len(name_components)
+
+    # adding for exe like AC.exe for "assassins's creed"
+    nc_s: set[str] | list[str] = set(name_components)
+    for nc in name_components:
+        if nc[0].isalpha() and nc[0].isupper():
+            nc_s.add(nc[0])
 
     exes: list[Path] = list()
+
+    nc_l = list(nc_s)
 
     for r, ds, fs in folder.walk():
         for f in fs:
             p: Path = r / f
             if p.suffix == ".exe":
-                if score(p.stem, name_components) > 0:
+                if score(p.stem, nc_l) >= token_len:
                     exes.append(p)
+
 
     return exes

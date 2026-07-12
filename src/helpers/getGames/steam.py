@@ -2,14 +2,15 @@
 functions for steam
 """
 
-from pathlib import Path
+from pathlib import Path, WindowsPath
 from src.classes.steam_data import SteamData
 from src.helpers.getGames.helpers.get_exe import get_exes
 from typing import cast
+from src import STEAM
 
 
 # Default Paths
-STEAM_APPS: Path = Path(r"C:\Program Files (x86)\Steam\steamapps")
+STEAM_APPS: Path = WindowsPath(r"C:\Program Files (x86)\Steam\steamapps")
 STEAM_GAMES_FOLDER: Path = STEAM_APPS / "common"
 
 
@@ -39,13 +40,13 @@ def get_games() -> list[SteamData]:
         game_data: dict[str, str] = parse_game(gf)
         if game_data["name"] != "Steamworks Common Redistributables":
             d = SteamData()
-            d.service = "Steam"
+            d.service = STEAM
             d.name = game_data["name"]
             d.appid = game_data["appid"]
             d.dir = STEAM_GAMES_FOLDER / game_data["installdir"]
 
             exe: list[Path] = get_exes(d.dir)
-            d.location = cast(list[Path | str], exe)
+            d.locations = cast(list[Path | str], exe)
 
             data.append(d)
     return data
