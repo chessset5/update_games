@@ -1,0 +1,11 @@
+{
+    "config folders": [
+        "C:\\Program Files\\Sunshine\\config",
+        "C:\\Program Files\\Apollo\\config"
+    ],
+    "Default install locations": [
+        "C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\games",
+        "C:\\Program Files (x86)\\Steam\\steamapps\\common"
+    ],
+    "install locations": []
+}

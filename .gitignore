@@ -11,6 +11,8 @@ wheels/
 *.env
 !*.env.example
 
+config/config.json
+
 # hidden files
 .hidden./
 
