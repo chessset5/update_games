@@ -6,9 +6,12 @@ dist/
 wheels/
 *.egg-info
 
-# Virtual environments
+# environments and variables
 .venv
+*.env
+!*.env.example
 
-# Project information
-config/
-data/
+# hidden files
+.hidden./
+
+
